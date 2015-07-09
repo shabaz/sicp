@@ -1,0 +1,6 @@
+Because we have a fixed epsilon, for very small numbers the procedure may terminate even when we're several orders of magnitude away from a correct answer. E.g. the square root of 0.0000000001 (10^-10), which is 0.00001 (10^-5).Our predicate would alway terminate when it gets close to the epsilon of 0.001, even though it is still way off the true answer. This will be true for pretty much all numbers smaller than 0.001 that we're finding the square root of.
+
+On the other hand for very large numbers the root of a number may not be even expressable in a precision of 0.001 because it size of a floating point number mantissa can't fit in both the most significant bit of a number and bits representing 0.001. E.g. on IEEE 64-bit floats you have about 16 decimal digits of precision. It is then possible to construct a number that will always either over or undershoot by more than 0.001 and thus never terminate. 
+
+To give an example of this, we pretend to have 3 decimal digits of precision and are trying to find the square root of 2000, which is about 44.7214. The system can however only represent 44.7 or 44.8. The first when squared will be off by 1.91 and the second by 7.04, way more than 0.001. Thus the system does not ever terminate.
+
