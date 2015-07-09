@@ -1,0 +1,13 @@
+(define (p) (p))
+
+(define (test x y)
+ (if (= x 0)
+     0
+     y))
+
+then evaluate:
+(test 0 (p))
+
+With applicative order evaluation the arguments 0 and (p) will first be evalutated. This results in (p) being evaluated, which will recursively call itself and get stuck in an infinite loop.
+
+With normal order evaluation the expression (test 0 (p)) will be substituted by test's procedure body, which will first evaluate the if predicate (= x 0), which will evaluate to true and the if yields 0. Thus test yields 0 and the second argument (p) never needs to be evaluated. 

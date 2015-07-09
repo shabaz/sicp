@@ -1,0 +1,4 @@
+(define (a-plus-abs-b a b)
+  ((if (> b 0) + -) a b))
+
+If b is positive the + operator will be used in a-plus-abs-b and the function will execute (+ a b). If b is negative however the if will spit out the - operator and (- a b) will be executed, which given that b is negative or zero is equivalent to (+ a (abs b)) with abs being an operator yielding the absolute value of b.
